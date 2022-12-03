@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System;
 using Blockchain.Application.Points.Queries.GetPointList;
@@ -9,13 +10,24 @@ using Blockchain.Application.Points.Commands.CreatePoint;
 
 namespace Blockchain.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class BlockchainController : BaseController
     {
         private readonly IMapper _mapper;
         public BlockchainController(IMapper mapper) => _mapper = mapper;
 
+        /// <summary>
+        /// Gets the list of gps points
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// GET /blockchain
+        /// </remarks>
+        /// <returns>Returns PointListVm</returns>
+        /// <response code="200">Success</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<PointListVm>> GetAll()
         {
             var query = new GetPointListQuery();
@@ -23,7 +35,18 @@ namespace Blockchain.WebApi.Controllers
             return Ok(vm);
         }
 
+        /// <summary>
+        /// Gets the GPS point by id
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// GET /blockchain/0f8fad5b-d9cb-469f-a165-70867728950e
+        /// </remarks>
+        /// <param name="id">Point id (guid)</param>
+        /// <returns>Returns PointDetailsVm</returns>
+        /// <response code="200">Success</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<PointDetailsVm>> Get(Guid id)
         {
             var query = new GetPointDetailsQuery
@@ -34,7 +57,29 @@ namespace Blockchain.WebApi.Controllers
             return Ok(vm);
         }
 
+        /// <summary>
+        /// Creates the GPS point
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// POST /point
+        /// { \n
+        ///     timestamp: "yyyy.mm.dd.yy.mm.ss", \n
+        ///     latitude: "xx.xx" \n
+        ///     longitude: "xx.xx" \n
+        ///     altitude: "xx.xx" \n
+        ///     speed: "xx.xx" \n
+        ///     satelites: "xx" \n
+        ///     delusionOfPresition: "xx.xx" \n
+        ///     horizontalDelusionOfPresition: "xx.xx" \n
+        ///     verticalDelusionOfPresition: "xx.xx" \n
+        /// }
+        /// </remarks>
+        /// <param name="createPointDto">CreatePointDto object</param>
+        /// <returns>Returns id (guid)</returns>
+        /// <response code="201">Success</response>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Guid>> Create([FromBody] CreatePointDto createPointDto)
         {
             var command = _mapper.Map<CreatePointCommand>(createPointDto);

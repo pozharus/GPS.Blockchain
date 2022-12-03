@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using Blockchain.Application.Common.Mappings;
 using Blockchain.Application.Infrastructure;
 using Blockchain.Application;
@@ -38,6 +40,13 @@ namespace Blockchain.WebApi
                     policy.AllowAnyOrigin();
                 });
             });
+
+            services.AddSwaggerGen(config =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +57,12 @@ namespace Blockchain.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "GPS.Blockchain API");
+            });
             app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
