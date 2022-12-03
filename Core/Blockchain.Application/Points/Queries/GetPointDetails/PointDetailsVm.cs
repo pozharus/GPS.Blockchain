@@ -7,7 +7,6 @@ namespace Blockchain.Application.Points.Queries.GetPointDetails
 {
     public class PointDetailsVm : IMapWith<TrackerPoint>
     {
-        public Guid Id { get; set; }
         public DateTime timestamp { get; set; }
         public float latitude { get; set; }
         public float longitude { get; set; }
@@ -21,8 +20,6 @@ namespace Blockchain.Application.Points.Queries.GetPointDetails
         public void Mapping(Profile profile)
         {
             profile.CreateMap<TrackerPoint, PointDetailsVm>()
-                .ForMember(pointDto => pointDto.Id,
-                    opt => opt.MapFrom(pointDto => pointDto.Id))
                 .ForMember(pointDto => pointDto.timestamp,
                     opt => opt.MapFrom(pointDto => pointDto.timestamp))
                 .ForMember(pointDto => pointDto.latitude,

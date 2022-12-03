@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Blockchain.Application
 {
@@ -7,6 +9,7 @@ namespace Blockchain.Application
         public static IServiceCollection AddApplication(
             this IServiceCollection services)
         {
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             return services;
         }
     }
