@@ -5,6 +5,6 @@ namespace Blockchain.Application.Points.Queries.GetPointDetails
 {
     public class GetPointDetailsQuery : IRequest<PointDetailsVm>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

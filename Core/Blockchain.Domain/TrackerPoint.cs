@@ -7,7 +7,7 @@ namespace Blockchain.Domain
      */
     public class TrackerPoint
     {
-        public Guid Id { get; set; }
+        public string id { get; set; }
         public DateTime timestamp { get; set; }
         public float latitude { get; set; }
         public float longitude { get; set; }

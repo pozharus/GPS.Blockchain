@@ -2,9 +2,9 @@
 {
     public class DbInitializer
     {
-        public static void Initialize(TrackerPointDbContext context)
+        public static void Initialize(BigchainDbConfiguration context)
         {
-            context.Database.EnsureCreated();
+            context.Configure();
         }
     }
 }

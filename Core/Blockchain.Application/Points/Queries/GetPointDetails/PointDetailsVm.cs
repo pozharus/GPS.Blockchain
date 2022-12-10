@@ -7,6 +7,7 @@ namespace Blockchain.Application.Points.Queries.GetPointDetails
 {
     public class PointDetailsVm : IMapWith<TrackerPoint>
     {
+        public string transactionId { get; set; }
         public DateTime timestamp { get; set; }
         public float latitude { get; set; }
         public float longitude { get; set; }

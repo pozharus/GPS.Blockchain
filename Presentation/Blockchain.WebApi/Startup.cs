@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using Blockchain.Application.Common.Mappings;
-using Blockchain.Application.Infrastructure;
 using Blockchain.Application;
 using Blockchain.Persistance;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Blockchain.WebApi.Middleware;
+using Blockchain.Application.Infrastructure;
 
 namespace Blockchain.WebApi
 {
@@ -28,7 +28,7 @@ namespace Blockchain.WebApi
             });
 
             services.AddApplication();
-            services.AddPersistence(Configuration);
+            services.AddPersistence();
             services.AddControllers();
 
             services.AddCors(options =>

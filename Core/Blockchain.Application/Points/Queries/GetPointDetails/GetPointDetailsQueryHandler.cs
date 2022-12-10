@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Notes.Application.Common.Exceptions;
-using Blockchain.Application.Infrastructure;
 using Blockchain.Domain;
+using Blockchain.Application.Infrastructure;
 
 namespace Blockchain.Application.Points.Queries.GetPointDetails
 {
@@ -22,16 +21,8 @@ namespace Blockchain.Application.Points.Queries.GetPointDetails
         public async Task<PointDetailsVm> Handle(GetPointDetailsQuery request,
                     CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.TrackerPoints
-                .FirstOrDefaultAsync(point =>
-                point.Id == request.Id, cancellationToken);
-
-            if (entity == null || entity.Id != request.Id)
-            {
-                throw new NotFoundException(nameof(TrackerPoint), request.Id);
-            }
-
-            return _mapper.Map<PointDetailsVm>(entity);
+            var point = _dbContext.getPointById(request);
+            return _mapper.Map<PointDetailsVm>(point);
         }
     }
 }

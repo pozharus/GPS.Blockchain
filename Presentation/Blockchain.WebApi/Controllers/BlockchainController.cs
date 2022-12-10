@@ -42,12 +42,12 @@ namespace Blockchain.WebApi.Controllers
         /// Sample request:
         /// GET /blockchain/0f8fad5b-d9cb-469f-a165-70867728950e
         /// </remarks>
-        /// <param name="id">Point id (guid)</param>
+        /// <param name="id">Point id</param>
         /// <returns>Returns PointDetailsVm</returns>
         /// <response code="200">Success</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<PointDetailsVm>> Get(Guid id)
+        public async Task<ActionResult<PointDetailsVm>> Get(string id)
         {
             var query = new GetPointDetailsQuery
             {

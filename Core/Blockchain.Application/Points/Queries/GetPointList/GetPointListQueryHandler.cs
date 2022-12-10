@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Blockchain.Application.Infrastructure;
 using MediatR;
 using System.Threading.Tasks;
 using System.Threading;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
+using Blockchain.Application.Infrastructure;
 
 namespace Blockchain.Application.Points.Queries.GetPointList
 {
@@ -21,11 +19,7 @@ namespace Blockchain.Application.Points.Queries.GetPointList
         public async Task<PointListVm> Handle(GetPointListQuery request,
             CancellationToken cancellationToken)
         {
-            var pointsQuery = await _dbContext.TrackerPoints
-                .ProjectTo<PointListLookupDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
-
-            return new PointListVm { Points = pointsQuery };
+            return _dbContext.getAll();
         }
     }
 }

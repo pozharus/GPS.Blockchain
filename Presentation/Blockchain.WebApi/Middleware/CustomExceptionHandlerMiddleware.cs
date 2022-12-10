@@ -5,6 +5,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System;
+using Blockchain.Application.Common.Exceptions;
 
 namespace Blockchain.WebApi.Middleware
 {
@@ -35,6 +36,9 @@ namespace Blockchain.WebApi.Middleware
             {
                 case NotFoundException:
                     code = HttpStatusCode.NotFound;
+                    break;
+                case TransactionException:
+                    code = HttpStatusCode.InternalServerError;
                     break;
             }
             context.Response.ContentType = "application/json";

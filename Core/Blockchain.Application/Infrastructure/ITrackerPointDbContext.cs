@@ -1,13 +1,13 @@
-﻿using Blockchain.Domain;
-using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Blockchain.Application.Points.Queries.GetPointList;
+using Blockchain.Application.Points.Queries.GetPointDetails;
+using Blockchain.Domain;
 
 namespace Blockchain.Application.Infrastructure
 {
     public interface ITrackerPointDbContext
     {
-        DbSet<TrackerPoint> TrackerPoints { get; set; }
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        PointListVm getAll();
+        PointDetailsVm getPointById(GetPointDetailsQuery request);
+        string createPoint(TrackerPoint point);
     }
 }
