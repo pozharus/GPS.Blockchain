@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B615BACB-10C7-45F5-982D-C120B7514C7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Domain", "Core\Blockchain.Domain\Blockchain.Domain.csproj", "{B03EAC19-C72B-49DC-B0DE-6DDB0AE8BA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Domain", "Core\Blockchain.Domain\Blockchain.Domain.csproj", "{B03EAC19-C72B-49DC-B0DE-6DDB0AE8BA70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2B162433-AF64-44F1-B9A3-FBB9DDBB3253}"
 EndProject
@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6B03A2AF-8037-46DF-B88A-F386C5C19DAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Application", "Core\Blockchain.Application\Blockchain.Application.csproj", "{EF41547C-3204-47A8-9CB7-48319FF72E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Application", "Core\Blockchain.Application\Blockchain.Application.csproj", "{EF41547C-3204-47A8-9CB7-48319FF72E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Persistance", "Infrastructure\Blockchain.Persistance\Blockchain.Persistance.csproj", "{80E70BA5-496A-4CB7-8E11-D168BFE469CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Persistance", "Infrastructure\Blockchain.Persistance\Blockchain.Persistance.csproj", "{80E70BA5-496A-4CB7-8E11-D168BFE469CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.WebApi", "Presentation\Blockchain.WebApi\Blockchain.WebApi.csproj", "{EFFAADD4-7D03-408A-AA00-ED02CB37F851}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.WebApi", "Presentation\Blockchain.WebApi\Blockchain.WebApi.csproj", "{EFFAADD4-7D03-408A-AA00-ED02CB37F851}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
