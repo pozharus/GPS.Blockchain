@@ -1,6 +1,4 @@
 1. Add API method for get transactions details for current point by point id
-2. Fixed Swagger API documentation
-3. Full code refactoring
+2. Full code refactoring
 	-> Find more effective solutions for object copying
-	-> Reading DB params from config file
 	-> Other full checking

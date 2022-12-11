@@ -18,7 +18,7 @@ namespace Blockchain.WebApi.Controllers
         public BlockchainController(IMapper mapper) => _mapper = mapper;
 
         /// <summary>
-        /// Gets the list of gps points
+        /// Get the list of gps points
         /// </summary>
         /// <remarks>
         /// Sample request:
@@ -63,21 +63,22 @@ namespace Blockchain.WebApi.Controllers
         /// <remarks>
         /// Sample request:
         /// POST /point
-        /// { \n
-        ///     timestamp: "yyyy.mm.dd.yy.mm.ss", \n
-        ///     latitude: "xx.xx" \n
-        ///     longitude: "xx.xx" \n
-        ///     altitude: "xx.xx" \n
-        ///     speed: "xx.xx" \n
-        ///     satelites: "xx" \n
-        ///     delusionOfPresition: "xx.xx" \n
-        ///     horizontalDelusionOfPresition: "xx.xx" \n
-        ///     verticalDelusionOfPresition: "xx.xx" \n
+        /// 
+        /// {
+        ///     timestamp: "yyyy.mm.dd.yy.mm.ss",
+        ///     latitude: "xx.xx"
+        ///     longitude: "xx.xx"
+        ///     altitude: "xx.xx"
+        ///     speed: "xx.xx"
+        ///     satelites: "xx"
+        ///     delusionOfPresition: "xx.xx"
+        ///     horizontalDelusionOfPresition: "xx.xx"
+        ///     verticalDelusionOfPresition: "xx.xx"
         /// }
         /// </remarks>
         /// <param name="createPointDto">CreatePointDto object</param>
         /// <returns>Returns id (guid)</returns>
-        /// <response code="201">Success</response>
+        /// <response code="200">Success</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Guid>> Create([FromBody] CreatePointDto createPointDto)

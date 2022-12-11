@@ -4,8 +4,8 @@ namespace Blockchain.Persistance.TypesDBConfiguration
 {
     public class Configuration
     {
-        public static String publicKey;
-        public static String privateKey;
-        public static String baseUrl;
+        public String publicKey { get; set; }
+        public String privateKey { get; set; }
+        public String baseUrl { get; set; }
     }
 }

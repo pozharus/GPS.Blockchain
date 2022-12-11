@@ -22,22 +22,15 @@ namespace Blockchain.Persistance
         public static Key privateKey { get; set; }
         public static PublicKey publicKey { get; set; }
 
-        public void Configure()
+        public async void Configure()
         {
-            // WTF!!!!!!!!! Why it isn't working! Fix it
-            // Load connection configuration
-            //Configuration item = await JsonFileReader.ReadAsync<Configuration>(@"C:\Users\Yaroslav\source\repos\GPS.Blockchain\Infrastructure\Blockchain.Persistance\appsettings.json");
-            //string output = File.ReadAllText(@"./appsettings.json");
-            //var item = JsonSerializer.Deserialize<Configuration>(output);
-
-            Configuration.baseUrl = "http://localhost:9984/";
-            Configuration.publicKey = "302a300506032b657003210033c43dc2180936a2a9138a05f06c892d2fb1cfda4562cbc35373bf13cd8ed373";
-            Configuration.privateKey = "302e020100300506032b6570042204206f6b0cd095f1e83fc5f08bffb79c7c8a30e77a3ab65f4bc659026b76394fcea8";
+            using FileStream openStream = File.OpenRead("../../Infrastructure/Blockchain.Persistance/config.json");
+            Configuration config = await JsonSerializer.DeserializeAsync<Configuration>(openStream);
 
             // Connection list
             IList<BlockchainConnection> connections = new List<BlockchainConnection>();
-            connections.Add(createConnection(Configuration.baseUrl));
-            connections.Add(createConnection(Configuration.baseUrl));
+            connections.Add(createConnection(config.baseUrl));
+            connections.Add(createConnection(config.baseUrl));
 
             // Multiple connections
             var builder = BigchainDbConfigBuilder
@@ -49,7 +42,7 @@ namespace Blockchain.Persistance
                 Console.WriteLine("Failed to setup");
             };
 
-            PrepareKeys(Configuration.privateKey, Configuration.publicKey);
+            PrepareKeys(config.privateKey, config.publicKey);
         }
 
         public BlockchainConnection createConnection(string baseUrl)
