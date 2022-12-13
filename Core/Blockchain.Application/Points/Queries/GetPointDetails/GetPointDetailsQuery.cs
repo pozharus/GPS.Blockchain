@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System;
 
 namespace Blockchain.Application.Points.Queries.GetPointDetails
 {

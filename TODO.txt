@@ -1,0 +1,4 @@
+1. Add API method for get transactions details for current point by point id
+2. Full code refactoring
+	-> Find more effective solutions for object copying
+	-> Other full checking
