@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{26A167BC-5258-4436-BE05-5816A78801EA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6B03A2AF-8037-46DF-B88A-F386C5C19DAE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Application", "Core\Blockchain.Application\Blockchain.Application.csproj", "{EF41547C-3204-47A8-9CB7-48319FF72E70}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Persistance", "Infrastructure\Blockchain.Persistance\Blockchain.Persistance.csproj", "{80E70BA5-496A-4CB7-8E11-D168BFE469CC}"
