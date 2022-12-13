@@ -78,7 +78,7 @@ namespace Blockchain.WebApi.Controllers
         /// </remarks>
         /// <param name="createPointDto">CreatePointDto object</param>
         /// <returns>Returns id (guid)</returns>
-        /// <response code="200">Success</response>
+        /// <response code="201">Success</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Guid>> Create([FromBody] CreatePointDto createPointDto)

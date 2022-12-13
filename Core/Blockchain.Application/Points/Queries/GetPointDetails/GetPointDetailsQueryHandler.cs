@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Notes.Application.Common.Exceptions;
-using Blockchain.Domain;
 using Blockchain.Application.Infrastructure;
 
 namespace Blockchain.Application.Points.Queries.GetPointDetails
