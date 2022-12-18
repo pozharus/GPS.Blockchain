@@ -3,7 +3,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Blockchain.Persistance;
 using System;
-using Microsoft.Extensions.DependencyModel;
 
 
 namespace Blockchain.WebApi

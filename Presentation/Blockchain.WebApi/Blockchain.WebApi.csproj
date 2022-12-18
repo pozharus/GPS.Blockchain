@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>Blockchain.WebApi-b71c17d6-e399-4534-b891-913ed76bcfe1</UserSecretsId>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>

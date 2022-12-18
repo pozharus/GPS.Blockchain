@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Blockchain.Application.Common.Exceptions;
 using Blockchain.Domain;
 using Blockchain.Persistance.TypesDBConfiguration;
 using Nito.AsyncEx;
-using NSec.Cryptography;
 using Omnibasis.BigchainCSharp.Api;
 using Omnibasis.BigchainCSharp.Builders;
 using Omnibasis.BigchainCSharp.Constants;
 using Omnibasis.BigchainCSharp.Model;
 using Omnibasis.BigchainCSharp.Util;
-using Org.BouncyCastle.Asn1.Cms;
 
 namespace Blockchain.Persistance
 {

@@ -1,0 +1,54 @@
+version: '1'
+services:
+  envoygateway:
+    build: Envoy/
+    ports:
+      - "9901:9901"
+      - "10000:10000"
+    volumes:
+      - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
+  blockchain.webapi:
+    build: ./
+    ports:
+      - "8080:80"
+      - "8081:443"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8081"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
+  bigchaindb_1:
+    build: BigchainDB/
+    ports:
+     - "9984:9984"
+     - "9985:9985"
+     - "27017:27017"
+     - "26657:26657"
+    volumes:
+      - ${USERPROFILE}/bigchaindb_docker1/mongodb/data/db:/data/db
+      - ${USERPROFILE}/bigchaindb_docker/mongodb/data/configdb:/data/configdb
+      - ${USERPROFILE}/bigchaindb_docker/tendermint:/tendermint
+  bigchaindb_2:
+    build: BigchainDB/
+    ports:
+     - "9986:9984"
+     - "9987:9985"
+     - "27018:27017"
+     - "26658:26657"
+    volumes:
+      - ${USERPROFILE}/bigchaindb_docker2/mongodb/data/db:/data/db
+      - ${USERPROFILE}/bigchaindb_docker/mongodb/data/configdb:/data/configdb
+      - ${USERPROFILE}/bigchaindb_docker/tendermint:/tendermint
+  bigchaindb_3:
+    build: BigchainDB/
+    ports:
+     - "9988:9984"
+     - "9989:9985"
+     - "27019:27017"
+     - "26659:26657"
+    volumes:
+      - ${USERPROFILE}/bigchaindb_docker3/mongodb/data/db:/data/db
+      - ${USERPROFILE}/bigchaindb_docker/mongodb/data/configdb:/data/configdb
+      - ${USERPROFILE}/bigchaindb_docker/tendermint:/tendermint

@@ -31,16 +31,6 @@ namespace Blockchain.WebApi
             services.AddPersistence();
             services.AddControllers();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", policy =>
-                {
-                    policy.AllowAnyHeader();
-                    policy.AllowAnyMethod();
-                    policy.AllowAnyOrigin();
-                });
-            });
-
             services.AddSwaggerGen(config =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -66,7 +56,6 @@ namespace Blockchain.WebApi
             app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
-            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {

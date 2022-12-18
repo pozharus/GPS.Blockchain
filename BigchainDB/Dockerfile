@@ -1,0 +1,1 @@
+FROM bigchaindb/bigchaindb:all-in-one

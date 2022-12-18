@@ -10,11 +10,9 @@ namespace Blockchain.Application.Points.Queries.GetPointList
         : IRequestHandler<GetPointListQuery, PointListVm>
     {
         private readonly ITrackerPointDbContext _dbContext;
-        private readonly IMapper _mapper;
 
-        public GetPointListQueryHandler(ITrackerPointDbContext dbContext,
-            IMapper mapper) =>
-            (_dbContext, _mapper) = (dbContext, mapper);
+        public GetPointListQueryHandler(ITrackerPointDbContext dbContext) =>
+            (_dbContext) = (dbContext);
 
         public async Task<PointListVm> Handle(GetPointListQuery request,
             CancellationToken cancellationToken)

@@ -1,6 +1,4 @@
-﻿using AutoMapper.Configuration;
-using Blockchain.Application.Infrastructure;
-using Microsoft.EntityFrameworkCore;
+﻿using Blockchain.Application.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Blockchain.Persistance

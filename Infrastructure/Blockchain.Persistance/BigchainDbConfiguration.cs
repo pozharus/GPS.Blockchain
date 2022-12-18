@@ -1,18 +1,12 @@
 ﻿using Nito.AsyncEx;
 using NSec.Cryptography;
-using Omnibasis.BigchainCSharp.Api;
 using Omnibasis.BigchainCSharp.Builders;
-using Omnibasis.BigchainCSharp.Constants;
 using Omnibasis.BigchainCSharp.Model;
-using Omnibasis.BigchainCSharp.Util;
 using System.Collections.Generic;
 using System.IO;
 using Blockchain.Persistance.TypesDBConfiguration;
-using Blockchain.Persistance.Utils;
-using System.Threading.Tasks;
 using System;
 using System.Text.Json;
-using System.Linq;
 
 namespace Blockchain.Persistance
 {
@@ -20,17 +14,21 @@ namespace Blockchain.Persistance
     {
         public static Ed25519 algorithm { get; set; }
         public static Key privateKey { get; set; }
-        public static PublicKey publicKey { get; set; }
+        public static PublicKey publicKey { get; set; } 
 
         public async void Configure()
         {
-            using FileStream openStream = File.OpenRead("../../Infrastructure/Blockchain.Persistance/config.json");
-            Configuration config = await JsonSerializer.DeserializeAsync<Configuration>(openStream);
+            using FileStream openStream = File.OpenRead("config.json");
+            List<Configuration> configs = new List<Configuration>();
+            configs = await JsonSerializer.DeserializeAsync<List<Configuration>>(openStream);
 
             // Connection list
             IList<BlockchainConnection> connections = new List<BlockchainConnection>();
-            connections.Add(createConnection(config.baseUrl));
-            connections.Add(createConnection(config.baseUrl));
+            foreach (Configuration config in configs)
+            {
+                connections.Add(createConnection(config.baseUrl));
+                PrepareKeys(config.privateKey, config.publicKey);
+            }
 
             // Multiple connections
             var builder = BigchainDbConfigBuilder
@@ -41,8 +39,6 @@ namespace Blockchain.Persistance
             {
                 Console.WriteLine("Failed to setup");
             };
-
-            PrepareKeys(config.privateKey, config.publicKey);
         }
 
         public BlockchainConnection createConnection(string baseUrl)
