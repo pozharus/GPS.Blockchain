@@ -55,7 +55,6 @@ namespace Blockchain.WebApi
             });
             app.UseCustomExceptionHandler();
             app.UseRouting();
-            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {

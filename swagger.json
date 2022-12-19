@@ -1,0 +1,233 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Blockchain.WebApi",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Blockchain": {
+      "get": {
+        "tags": [
+          "Blockchain"
+        ],
+        "summary": "Get the list of gps points",
+        "description": "Sample request:\r\nGET /blockchain",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PointListVm"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Blockchain"
+        ],
+        "summary": "Creates the GPS point",
+        "description": "Sample request:\r\nPOST /point\r\n\r\n{\r\n    timestamp: \"yyyy.mm.dd.yy.mm.ss\",\r\n    latitude: \"xx.xx\"\r\n    longitude: \"xx.xx\"\r\n    altitude: \"xx.xx\"\r\n    speed: \"xx.xx\"\r\n    satelites: \"xx\"\r\n    delusionOfPresition: \"xx.xx\"\r\n    horizontalDelusionOfPresition: \"xx.xx\"\r\n    verticalDelusionOfPresition: \"xx.xx\"\r\n}",
+        "requestBody": {
+          "description": "CreatePointDto object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePointDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePointDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePointDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Blockchain/{id}": {
+      "get": {
+        "tags": [
+          "Blockchain"
+        ],
+        "summary": "Gets the GPS point by id",
+        "description": "Sample request:\r\nGET /blockchain/0f8fad5b-d9cb-469f-a165-70867728950e",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Point id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PointDetailsVm"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreatePointDto": {
+        "required": [
+          "latitude",
+          "longitude",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "altitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "speed": {
+            "type": "number",
+            "format": "float"
+          },
+          "satelites": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "delusionOfPresition": {
+            "type": "number",
+            "format": "float"
+          },
+          "horizontalDelusionOfPresition": {
+            "type": "number",
+            "format": "float"
+          },
+          "verticalDelusionOfPresition": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PointDetailsVm": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "altitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "speed": {
+            "type": "number",
+            "format": "float"
+          },
+          "satelites": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "delusionOfPresition": {
+            "type": "number",
+            "format": "float"
+          },
+          "horizontalDelusionOfPresition": {
+            "type": "number",
+            "format": "float"
+          },
+          "verticalDelusionOfPresition": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PointListLookupDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PointListVm": {
+        "type": "object",
+        "properties": {
+          "points": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PointListLookupDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

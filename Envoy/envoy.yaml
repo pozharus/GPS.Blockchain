@@ -7,7 +7,7 @@ admin:
       port_value: 9901
 static_resources:
   listeners:
-  - name: listener_0
+  - name: listener_1
     address:
       socket_address:
         protocol: TCP
@@ -26,35 +26,31 @@ static_resources:
               domains: ["*"]
               routes:
               - match:
+                  prefix: "/api/Blockchain"
+                route:
+                  cluster: secure_blockchain_api
+              - match:
                   prefix: "/"
                 route:
-                  cluster: blockchain_gps_service
+                  cluster: secure_blockchain_api
           http_filters:
           - name: envoy.filters.http.router
+      tls_context:
+        common_tls_context:
+          tls_certificates:
+            - certificate_chain:
+                filename: "/etc/ssl/certs/https.crt"
+              private_key:
+                filename: "/etc/ssl/certs/key.pem"
   clusters:
-  - name: blockchain_gps_service
+  - name: secure_blockchain_api
     connect_timeout: 0.25s
     type: LOGICAL_DNS
     # Comment out the following line to test on v6 networks
     dns_lookup_family: V4_ONLY
     lb_policy: ROUND_ROBIN
     load_assignment:
-      cluster_name: blockchain_gps_service
-      endpoints:
-      - lb_endpoints:
-        - endpoint:
-            address:
-              socket_address:
-                address: blockchain.webapi
-                port_value: 80
-  - name: secure_blockchain_gps_service
-    connect_timeout: 0.25s
-    type: LOGICAL_DNS
-    # Comment out the following line to test on v6 networks
-    dns_lookup_family: V4_ONLY
-    lb_policy: ROUND_ROBIN
-    load_assignment:
-      cluster_name: secure_blockchain_gps_service
+      cluster_name: secure_blockchain_api
       endpoints:
       - lb_endpoints:
         - endpoint:

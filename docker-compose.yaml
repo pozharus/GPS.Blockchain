@@ -7,6 +7,8 @@ services:
       - "10000:10000"
     volumes:
       - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
+      - ./Envoy/https.crt:/etc/ssl/certs/https.crt
+      - ./Envoy/key.pem:/etc/ssl/certs/key.pem
   blockchain.webapi:
     build: ./
     ports:
@@ -28,8 +30,8 @@ services:
      - "26657:26657"
     volumes:
       - ${USERPROFILE}/bigchaindb_docker1/mongodb/data/db:/data/db
-      - ${USERPROFILE}/bigchaindb_docker/mongodb/data/configdb:/data/configdb
-      - ${USERPROFILE}/bigchaindb_docker/tendermint:/tendermint
+      - ${USERPROFILE}/bigchaindb_docker1/mongodb/data/configdb:/data/configdb
+      - ${USERPROFILE}/bigchaindb_docker1/tendermint:/tendermint
   bigchaindb_2:
     build: BigchainDB/
     ports:
@@ -39,8 +41,8 @@ services:
      - "26658:26657"
     volumes:
       - ${USERPROFILE}/bigchaindb_docker2/mongodb/data/db:/data/db
-      - ${USERPROFILE}/bigchaindb_docker/mongodb/data/configdb:/data/configdb
-      - ${USERPROFILE}/bigchaindb_docker/tendermint:/tendermint
+      - ${USERPROFILE}/bigchaindb_docker2/mongodb/data/configdb:/data/configdb
+      - ${USERPROFILE}/bigchaindb_docker2/tendermint:/tendermint
   bigchaindb_3:
     build: BigchainDB/
     ports:
@@ -50,5 +52,5 @@ services:
      - "26659:26657"
     volumes:
       - ${USERPROFILE}/bigchaindb_docker3/mongodb/data/db:/data/db
-      - ${USERPROFILE}/bigchaindb_docker/mongodb/data/configdb:/data/configdb
-      - ${USERPROFILE}/bigchaindb_docker/tendermint:/tendermint
+      - ${USERPROFILE}/bigchaindb_docker3/mongodb/data/configdb:/data/configdb
+      - ${USERPROFILE}/bigchaindb_docker3/tendermint:/tendermint
